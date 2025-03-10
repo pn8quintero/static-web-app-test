@@ -21,7 +21,7 @@ jobs:
           submodules: true
           lfs: false
       - name: Read a variable
-        run: echo "Content is ${{VITE_HTML_CONTENT}}"
+        run: echo "Content is ${{ vars.VITE_HTML_CONTENT }}"
       - name: Inject Environment Variables
         run: echo "VITE_HTML_CONTENT=$VITE_HTML_CONTENT" >> $GITHUB_ENV
       - name: Build And Deploy
