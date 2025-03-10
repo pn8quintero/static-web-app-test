@@ -22,8 +22,6 @@ jobs:
           lfs: false
       - name: Read a variable
         run: echo "Content is ${{ vars.VITE_HTML_CONTENT }}"
-      - name: Inject Environment Variables
-        run: echo "VITE_HTML_CONTENT=$VITE_HTML_CONTENT" >> $GITHUB_ENV
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -37,6 +35,8 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+        env:
+         VITE_HTML_CONTENT: ${{ vars.VITE_HTML_CONTENT }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
